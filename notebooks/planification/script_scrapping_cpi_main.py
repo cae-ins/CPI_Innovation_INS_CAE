@@ -38,6 +38,8 @@ from send_mail import send_mail_success, send_mail_error
 #Importation du module de Scrapping
 from Script_Scrapping_cpi import scrapping_AIK
 
+import os
+
 try :
     #--------------------------------------------------------- CODE AIK ---------------------------------------------------------------------
 
@@ -214,15 +216,16 @@ try :
 
     #Exportation de la donnée Finale
     df_final = pd.concat([df, df1], axis=0, ignore_index=True)
-    df_final.to_excel("Data_Scrapping_"+datetime.now().strftime('%Y-%m-%d %H:%M:%S')+".xlsx", index=False)
+    chemin_fichier_collecte = os.path.join('COLLECTE_JOURNALIERE','Data_Scrapping_'+datetime.now().strftime('%d%m%Y')+'.xlsx')
+    df_final.to_excel(chemin_fichier_collecte, index=False)
 
 
 
     #ENVOIE DU MAIL:
 
-    send_mail_success("Donnee_Scrapping_Adjovan", "bakayokoabdoulaye2809@gmail.com", "abdoulayebakayoko265@gmail.com", "Donnee_Scrapping_Adjovan.xlsx")
+    send_mail_success("Donnee_Scrapping_AIAK", "bakayokoabdoulaye2809@gmail.com", "abdoulayebakayoko265@gmail.com", chemin_fichier_collecte)
 
 except Exception as e:
 
-    send_mail_error("Donnee_Scrapping_Adjovan", "bakayokoabdoulaye2809@gmail.com", "abdoulayebakayoko265@gmail.com", "Donnee_Scrapping_Adjovan.xlsx")
+    send_mail_error("bakayokoabdoulaye2809@gmail.com", "abdoulayebakayoko265@gmail.com")
 

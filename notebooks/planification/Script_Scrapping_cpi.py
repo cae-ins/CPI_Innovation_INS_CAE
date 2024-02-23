@@ -135,7 +135,9 @@ def scrapping_AIK():
     'N_ordre', 'code_site', 'Code_ID_PE', 'date de collecte', 'Libellé du produit', 'Caractéristiques du produit',
     'Prix Réel', 'Quantité', "Prix du produit"]]
 #-------------------------------------------------------------------------------------------------------------------------------------
-    df_ivoirshop[["Prix du produit", 'Unite_monetaire']] = df_ivoirshop["Prix du produit"].str.extract(r"([0-9.]+)\s*([a-zA-Z]+)")
+    extracted_data = df_ivoirshop["Prix du produit"].str.extract(r"([0-9.]+)\s*([a-zA-Z]+)")
+    df_ivoirshop.loc[:, "Prix du produit"] = extracted_data[0]
+    df_ivoirshop.loc[:, 'Unite_monetaire'] = extracted_data[1]
 
 # CODE KEVAJO ------------------------------------------------------------------------------------------------------------------------
     #import requests
@@ -333,14 +335,38 @@ def scrapping_AIK():
     #from datetime import datetime
 
     # Liste des URLs
-    urls = ["https://www.auchan.ci/promos-can/U5DH4PLR/cp",
-"https://www.auchan.ci/mes-courses/surgeles/UYB4B7B1",
-"https://www.auchan.ci/mes-courses/beurres-margarines-et-autres/UJBB6N7N",
-"https://www.auchan.ci/mes-courses/eaux-minerales/C7ORAPLP",
-"https://www.auchan.ci/mes-courses/bebe/U8P06ELE",
-   
+    urls = [ "https://www.auchan.ci/les-indispensables/1J56N7JC/cp",
+    "https://www.auchan.ci/mes-courses/gel-douche-et-bain/UJ3B2N7N",
+    "https://www.auchan.ci/mes-courses/parapharmacie/18PEAELE",
+    "https://www.auchan.ci/promos-can/U5DH4PLR/cp",
+    "https://www.auchan.ci/mes-courses/surgeles/UYB4B7B1",
+    "https://www.auchan.ci/mes-courses/beurres-margarines-et-autres/UJBB6N7N",
+    "https://www.auchan.ci/mes-courses/eaux-minerales/C7ORAPLP",
+    "https://www.auchan.ci/mes-courses/bebe/U8P06ELE",
+    "https://www.auchan.ci/les-nouveautes/CYXMB7NU/cp",
+    "https://www.auchan.ci/mes-courses/boissons/UFRY2VYV",
+    "https://www.auchan.ci/mes-courses/savons/UENW2QWQ",
+    "https://www.auchan.ci/mes-courses/cereales/UPNJ4B7B",
+    "https://www.auchan.ci/mes-courses/couches-et-couches-culottes/1ZOYSLOL",
+    "https://www.auchan.ci/mes-courses/cafes/U0FDIPBP",
+    "https://www.auchan.ci/mes-courses/soins-des-cheveux/UZZNGLOL",
+    "https://www.auchan.ci/mes-courses/laits-et-boissons-lactees/C7NZMPLP",
+    "https://www.auchan.ci/mes-courses/serviettes-hygieniques/1EOXAQWQ",
+    "https://www.auchan.ci/special-de-2000fcfa/C5ESPLRU/cp",
+    "https://www.auchan.ci/mes-courses/brioches-et-pains-de-mie/1LQB4N7N",
+    "https://www.auchan.ci/mes-courses/soins-du-visage-et-maquillage/CX99MLOL",
+    "https://www.auchan.ci/mes-courses/chocolat-en-poudre/1RB9SB7B",
+    "https://www.auchan.ci/mes-courses/boissons-gazeuses-et-sirops/175K2PLP",
+    "https://www.auchan.ci/mes-courses/bieres-et-cidres/UR7QGB7B",
+    "https://www.auchan.ci/mes-courses/bonbons/1RNO6B7B",
+    "https://www.auchan.ci/mes-courses/legumes-et-fruits/CRPYAB7B",
+    "https://www.auchan.ci/promos-can/U5DH4PLR/cp",
+    "https://www.auchan.ci/mes-courses/surgeles/UYB4B7B1",
+    "https://www.auchan.ci/mes-courses/beurres-margarines-et-autres/UJBB6N7N",
+    "https://www.auchan.ci/mes-courses/eaux-minerales/C7ORAPLP",
+    "https://www.auchan.ci/mes-courses/bebe/U8P06ELE",
         
-        ] 
+        ]
 
     # Configuration du navigateur Selenium
     options = webdriver.ChromeOptions()
