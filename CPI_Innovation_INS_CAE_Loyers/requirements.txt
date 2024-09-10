@@ -1,0 +1,15 @@
+
+apache-airflow
+pandas
+numpy
+matplotlib
+seaborn
+fuzzywuzzy
+python-Levenshtein
+regex
+scipy
+spacy
+beautifulsoup4
+selenium
+openpyxl
+jupyter
